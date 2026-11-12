@@ -1,0 +1,13 @@
+{
+  "name": "ethers-v5-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A small app still on ethers v5: the test repository for the 402 Found codemod engine.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
+}
