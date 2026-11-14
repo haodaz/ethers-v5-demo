@@ -2,19 +2,19 @@
 import { ethers } from "ethers";
 
 export function makeProvider(rpcUrl) {
-  return new ethers.providers.JsonRpcProvider(rpcUrl);
+  return new ethers.JsonRpcProvider(rpcUrl);
 }
 
 export async function balanceInEther(provider, address) {
   const wei = await provider.getBalance(address);
-  return ethers.utils.formatEther(wei);
+  return ethers.formatEther(wei);
 }
 
 export async function signerFor(provider) {
-  const signer = provider.getSigner();
+  const signer = await provider.getSigner();
   return signer.getAddress();
 }
 
 export function isEmptyAddress(address) {
-  return address === ethers.constants.AddressZero;
+  return address === ethers.ZeroAddress;
 }
