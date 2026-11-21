@@ -1,21 +1,21 @@
 // Fee and split math with BigNumber, written for ethers v5.
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 
 export function withFee(amountEther, feeBps) {
-  const amount = ethers.utils.parseEther(amountEther);
-  const fee = amount.mul(feeBps).div(10000);
-  return amount.add(fee);
+  const amount = ethers.parseEther(amountEther);
+  const fee = amount * BigInt(feeBps) / BigInt(10000);
+  return amount + fee;
 }
 
 export function splitEvenly(total, parts) {
-  const each = BigNumber.from(total).div(parts);
-  return { each, remainder: BigNumber.from(total).sub(each.mul(parts)) };
+  const each = BigInt(total) / BigInt(parts);
+  return { each, remainder: BigInt(total) - each * BigInt(parts) };
 }
 
 export function isZero(value) {
-  return BigNumber.from(value).isZero();
+  return BigInt(value) === 0n;
 }
 
 export function toHex(value) {
-  return BigNumber.from(value).toHexString();
+  return ethers.toBeHex(BigInt(value));
 }
